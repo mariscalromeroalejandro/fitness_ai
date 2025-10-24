@@ -1,0 +1,66 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Eureka",
+      "type": "shell",
+      "command": "mvn clean install -DskipTests -q && mvn spring-boot:run -q",
+      "options": { "cwd": "${workspaceFolder}/eureka" },
+      "presentation": { "panel": "dedicated", "showReuseMessage": false }
+    },
+    {
+      "label": "Run ConfigService",
+      "type": "shell",
+      "command": "mvn clean install -DskipTests -q && mvn spring-boot:run -q",
+      "options": { "cwd": "${workspaceFolder}/configserver" },
+      "presentation": { "panel": "dedicated", "showReuseMessage": false }
+    },
+    {
+      "label": "Run UserService",
+      "type": "shell",
+      "command": "mvn clean install -DskipTests -q && mvn spring-boot:run -q",
+      "options": { "cwd": "${workspaceFolder}/userservice" },
+      "presentation": { "panel": "dedicated", "showReuseMessage": false }
+    },
+    {
+      "label": "Run ActivityService",
+      "type": "shell",
+      "command": "mvn clean install -DskipTests -q && mvn spring-boot:run -q",
+      "options": { "cwd": "${workspaceFolder}/activityservice" },
+      "presentation": { "panel": "dedicated", "showReuseMessage": false }
+    },
+    {
+      "label": "Run AIService",
+      "type": "shell",
+      "command": "mvn clean install -DskipTests -q && mvn spring-boot:run -q",
+      "options": {
+        "cwd": "${workspaceFolder}/aiservice",
+        "env": {
+          "GEMINI_API_URL": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=",
+          "GEMINI_API_KEY": "AIzaSyBpDxQ91Zf_sic94By8bLIMh_YD5XfK70I"
+        }
+      },
+      "presentation": { "panel": "dedicated", "showReuseMessage": false }
+    },
+    {
+      "label": "Run API Gateway",
+      "type": "shell",
+      "command": "mvn clean install -DskipTests -q && mvn spring-boot:run -q",
+      "options": { "cwd": "${workspaceFolder}/gateway" },
+      "presentation": { "panel": "dedicated", "showReuseMessage": false }
+    },
+
+    {
+      "label": "Start Core Services",
+      "dependsOn": ["Run Eureka", "Run ConfigService"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Microservices",
+      "dependsOn": ["Run UserService", "Run ActivityService", "Run AIService"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    }
+  ]
+}

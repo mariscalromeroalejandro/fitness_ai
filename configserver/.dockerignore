@@ -1,0 +1,26 @@
+# Maven build directories
+target/
+!target/configserver-0.0.1-SNAPSHOT.jar
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Git
+.git/
+.gitignore
+
+# Logs
+*.log
+
+# OS generated files
+Thumbs.db
+
+# Maven wrapper jar (we want to keep the wrapper script but not the jar)
+.mvn/wrapper/maven-wrapper.jar
+
+# Test results
+*.tmp
+*.temp
